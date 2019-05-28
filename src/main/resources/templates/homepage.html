@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="general.html :: headerfiles"> </head>
+<body>
+
+<div th:insert="general.html :: header"></div>
+
+<div>
+    <a href='input'><button>Input Students</button></a>
+    <a href="upload"><button>Upload CSV</button></a>
+    <a href="groups"><button>Create Groups</button></a>
+</div>
+
+<div>
+    <table cellpadding="7em">
+        <thead>
+        <caption><h3>Students</h3></caption>
+        <tr>
+            <th> First Name </th>
+            <th> Last Name </th>
+            <th> Grade </th>
+            <th> School </th>
+            <th> Gender </th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${students.empty}">
+            <td colspan="7"> No Students Found. Is something not formatted correctly? </td>
+        </tr>
+        <tr th:each="student : ${students}">
+            <td><span th:text="${student.firstName}"> First Name </span></td>
+            <td><span th:text="${student.lastName}"> Last Name </span></td>
+            <td><span th:text="${student.grade}"> Grade </span></td>
+            <td><span th:text="${student.school}"> School </span></td>
+            <td><span th:text="${student.gender}"> Gender </span></td>
+            <td><a th:href="@{student/__${student.id}__}" ><button> Edit </button></a></td>
+            <td><a th:href="@{student/__${student.id}__/delete}" ><button> Delete </button></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a href="/deleteall"><button>Remove All</button></a>
+</div>
+
+<div th:insert="general.html :: footer"></div>
+
+</body>
+</html>

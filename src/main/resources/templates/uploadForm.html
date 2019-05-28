@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="general.html :: headerfiles"> </head>
+<body>
+
+<div th:insert="general.html :: header"></div>
+
+  <div>
+    <h2>Instructions</h2>
+    <h4>Create a file in excel or other spreadsheet program.</h4>
+    <h4>Label rows as "First Name", "Last Name", "Grade", "School", and "Gender".</h4>
+    <h4>Input data then file > save as > save as CSV.</h4>
+    <h4>On the website, choose the file then click "Add Students".</h4>
+    <br>
+  </div>
+
+  <div>
+    <form method="POST" enctype="multipart/form-data" action="/upload">
+      <!--<table>
+        <tr>
+          <td>File to upload:</td>
+          <td>
+            <button type="button"><input type="file" name="file" /></button>
+          </td>
+        </tr>
+      </table>-->
+      <h5 style="margin-left: 1em;">File to upload: <button type="button"><input type="file" name="file" /></button></h5>
+      <br>
+<!--      <input type="submit" value="Add Students" />-->
+      <button type="submit">Add Students</button>
+      <a href="/"><button type="button">Cancel</button></a>
+    </form>
+  </div>
+
+  <!--<div>
+    <ul>
+      <li th:each="file : ${files}">
+        <span th:text="${file}" />
+        <a th:href="@{__${file}__/delete}" th:text="delete" />
+      </li>
+    </ul>
+  </div>-->
+
+  <!--<div th:if="${files!=null and !files.empty}">
+    <form method="POST" action="/addupload">
+      <input type="submit" value="Add Students" />
+    </form>
+  </div>-->
+
+<div th:insert="general.html :: footer"></div>
+
+</body>
+</html>

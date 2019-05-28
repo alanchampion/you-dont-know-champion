@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="general.html :: headerfiles"> </head>
+<body>
+
+<div th:insert="general.html :: header"></div>
+
+<div>
+    <table cellpadding="7em">
+        <thead>
+            <caption><h3>Previously Exported Groups</h3></caption>
+        </thead>
+        <tbody>
+        <tr th:if="${files==null or files.empty}">
+            <td colspan="3"> No Files Found. Create and export groups to create files. </td>
+        </tr>
+        <tr th:each="file : ${files}">
+            <td><span th:text="${file}"> File Name </span></td>
+            <td><a th:href="@{files/__${file}__/}"><button> Download </button></a></td>
+            <td><a th:href="@{files/__${file}__/delete}"><button> Delete </button></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a href="/files/deleteall"><button>Delete All</button></a>
+    <a href="/"><button type="button">Home</button></a>
+</div>
+
+<div th:insert="general.html :: footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="general.html :: headerfiles"> </head>
+<body>
+
+<div th:insert="general.html :: header"></div>
+
+<div>
+    <ul>
+        <li th:each="file : ${files}">
+            <a th:href="${file}" th:text="${file}" />
+            <a th:href="@{__${file}__/delete}" th:text="delete" />
+        </li>
+    </ul>
+</div>
+
+<div th:if="${groups.empty}">
+    <h3>No Students Found</h3>
+</div>
+
+<div th:each="group : ${groups}">
+    <table cellpadding="7em">
+        <thead>
+        <caption><h4 th:text="${group.name}"></h4></caption>
+        <tr>
+            <th> First Name </th>
+            <th> Last Name </th>
+            <th> Grade </th>
+            <th> School </th>
+            <th> Gender </th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${group.students}">
+                <td><span th:text="${student.firstName}"> First Name </span></td>
+                <td><span th:text="${student.lastName}"> Last Name </span></td>
+                <td><span th:text="${student.grade}"> Grade </span></td>
+                <td><span th:text="${student.school}"> School </span></td>
+                <td><span th:text="${student.gender}"> Gender </span></td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+</div>
+
+<div>
+    <a href="/groups"><button>Retry</button></a>
+    <a href="/groups/export"><button>Export</button></a>
+    <a href="files"><button>Previously Exported</button></a>
+    <a href="/"><button>Back</button></a>
+</div>
+
+<div th:insert="general.html :: footer"></div>
+
+</body>
+</html>

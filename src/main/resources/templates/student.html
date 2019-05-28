@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="general.html :: headerfiles"> </head>
+<body>
+
+<div th:insert="general.html :: header"></div>
+
+<div>
+    <form action="#" th:action="@{/student/__${student.id}__/save}" th:object="${student}"
+          method="post">
+        <fieldset>
+            <table>
+                <thead>
+                <caption><h3 th:text="${student.firstName + ' ' + student.lastName}"></h3></caption>
+                <tr>
+                    <th> First Name </th>
+                    <th> Last Name </th>
+                    <th> Grade </th>
+                    <th> School </th>
+                    <th> Gender </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <!--<td><input th:field="*{student.firstName}" th:text="${student.firstName}"/></td>
+                    <td><input th:field="*{student.lastName}" th:text="${student.lastName}"/></td>
+                    <td><input th:field="*{student.grade}" th:text="${student.grade}"/></td>
+                    <td><input th:field="*{student.school}" th:text="${student.school}"/></td>
+                    <td><input th:field="*{student.gender}" th:text="${student.gender}"/></td>-->
+                    <td><input th:field="${student.firstName}"/></td>
+                    <td><input th:field="${student.lastName}" /></td>
+                    <td><input th:field="${student.grade}" /></td>
+                    <td><input th:field="${student.school}"/></td>
+                    <td><input th:field="${student.gender}"/></td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit">Save</button>
+            <button type="reset">Reset</button>
+            <a th:href="@{/student/__${student.id}__/delete}"><button type="button">Delete Student</button></a>
+        </fieldset>
+    </form>
+</div>
+
+<div>
+    <a href='/'><button>Cancel</button></a>
+</div>
+
+<div th:insert="general.html :: footer"></div>
+
+</body>
+</html>

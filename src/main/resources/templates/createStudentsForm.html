@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="general.html :: headerfiles"> </head>
+<body>
+
+<div th:insert="general.html :: header"></div>
+
+<div>
+    <h3>As of right now you can only enter one student at a time.</h3>
+    <h4>Or consider using the CSV file input.</h4>
+</div>
+
+<div>
+    <form action="#" th:action="@{/save}" th:object="${form}"
+          method="post">
+        <fieldset>
+            <table>
+                <thead>
+                <tr>
+                    <th> First Name </th>
+                    <th> Last Name </th>
+                    <th> Grade </th>
+                    <th> School </th>
+                    <th> Gender </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student, itemStat : *{students}">
+                    <td><input th:field="*{students[__${itemStat.index}__].firstName}" autofocus="autofocus"/></td>
+                    <td><input th:field="*{students[__${itemStat.index}__].lastName}" /></td>
+                    <td><input th:field="*{students[__${itemStat.index}__].grade}" /></td>
+                    <td><input th:field="*{students[__${itemStat.index}__].school}" /></td>
+                    <td><input th:field="*{students[__${itemStat.index}__].gender}" /></td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit">Add Student</button>
+            <button type="reset">Clear</button>
+        </fieldset>
+    </form>
+</div>
+
+<div>
+    <a href="/"><button>Done</button></a>
+</div>
+
+<div th:insert="general.html :: footer"></div>
+
+</body>
+</html>
